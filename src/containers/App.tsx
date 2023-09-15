@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from "react";
-import logo from "./logo.svg";
+import logo from "../images/logo.svg";
 import "./App.css";
 
-type Greeting = {
-  id: number;
-  name: string;
-};
-
 function App() {
-  const [greeting, setGreeting] = useState<Greeting>();
+
+  const [saludo,setSaludo] = useState('');
   useEffect(() => {
-    fetch("/api")
-      .then(res => res.json())
-      .then(setGreeting)
-      .catch(console.error);
-  }, [setGreeting]);
+    fetch('http://localhost:8080/posts')
+    .then(response => response.text())
+    .then(text => setSaludo(text))
+    .catch(error => console.error(error));
+  },[setSaludo]);
+
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        {greeting ? (
-          <p>Hello from {greeting.name}</p>
+        {saludo ? (
+          <p>Hello from {saludo}</p>
         ) : (
           <p>Loading...</p>
         )}

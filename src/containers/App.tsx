@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import logo from "../images/logo.svg";
+import React, {useEffect, useState } from "react";
 import "./App.css";
+import Particles from 'react-particles-js';
 
 function App() {
 
@@ -15,23 +15,14 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        {saludo ? (
-          <p>Hello from {saludo}</p>
+        <span>Inicio</span>
+        <span>Sobre mi</span>
+        <span>Blog</span>
+        <span>{saludo ? (
+          <span className="connected">Conexión correcta</span>
         ) : (
-          <p>Loading...</p>
-        )}
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+          <span className="connecting">Cargando...</span>
+        )}</span>
       </header>
     </div>
   );

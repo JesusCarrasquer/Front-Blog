@@ -30,6 +30,17 @@ const particlesLoaded = useCallback(async (container: any) => {
 
   return (
     <div className="App">
+      
+      <header className="App-header">
+        <span className="selected">Inicio</span>
+        <span>Sobre mi</span>
+        <span>Blog</span>
+        <span>{saludo ? (
+          <span className="connected">Conexión correcta</span>
+        ) : (
+          <span className="connecting">Cargando...</span>
+        )}</span>
+      </header>
       <Particles
             id="tsparticles"
             init={particlesInit}
@@ -145,17 +156,8 @@ const particlesLoaded = useCallback(async (container: any) => {
               "retina_detect": true
             }}
         />
-      <header className="App-header">
-        <span>Inicio</span>
-        <span>Sobre mi</span>
-        <span>Blog</span>
-        <span>{saludo ? (
-          <span className="connected">Conexión correcta</span>
-        ) : (
-          <span className="connecting">Cargando...</span>
-        )}</span>
-      </header>
     </div>
+    
   );
 }
 

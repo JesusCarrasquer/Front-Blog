@@ -1,9 +1,9 @@
 import React, {useCallback, useEffect, useState } from "react";
 import "./App.css";
 import Particles from "react-particles";
-import type { Container, Engine } from "tsparticles-engine";
-//import { loadFull } from "tsparticles"; // if you are going to use `loadFull`, install the "tsparticles" package too.
 import { loadSlim } from "tsparticles-slim"; // if you are going to use `loadSlim`, install the "tsparticles-slim" package too.
+import { Route, Routes, useNavigate } from "react-router";
+import NoMatch from "../pages/NoMatch";
 
 function App() {
 
@@ -28,19 +28,26 @@ const particlesLoaded = useCallback(async (container: any) => {
     await console.log(container);
 }, []);
 
+const navigate = useNavigate();
+
   return (
     <div className="App">
-      
       <header className="App-header">
-        <span className="selected">Inicio</span>
-        <span>Sobre mi</span>
-        <span>Blog</span>
+        <span className="selected" onClick={() => {navigate('/')}}>Inicio</span>
+        <span onClick={() => {navigate('/About')}}>Sobre mi</span>
+        <span onClick={() => {navigate('/Blog')}}>Blog</span>
         <span>{saludo ? (
           <span className="connected">Conexión correcta</span>
         ) : (
           <span className="connecting">Cargando...</span>
         )}</span>
       </header>
+      <Routes>
+        <Route path="*" element={<NoMatch/>} />
+        <Route path="/" element={<NoMatch/>} />
+        <Route path="/About" element={<NoMatch/>} />
+        <Route path="/Blog" element={<NoMatch/>} />
+      </Routes>
       <Particles
             id="tsparticles"
             init={particlesInit}
@@ -48,7 +55,7 @@ const particlesLoaded = useCallback(async (container: any) => {
             options={{
               "particles": {
                 "number": {
-                  "value": 100,
+                  "value": 150,
                   "density": {
                     "enable": true,
                     "value_area": 789.1476416322727
@@ -87,7 +94,7 @@ const particlesLoaded = useCallback(async (container: any) => {
                   "random": true,
                   "anim": {
                     "enable": true,
-                    "speed": 1,
+                    "speed": 2,
                     "size_min": 0,
                     "sync": false
                   }
@@ -155,7 +162,7 @@ const particlesLoaded = useCallback(async (container: any) => {
               },
               "retina_detect": true
             }}
-        />
+        />        
     </div>
     
   );
